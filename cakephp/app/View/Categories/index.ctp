@@ -16,11 +16,11 @@
 
     <?php foreach ($categories as $category): ?>
     <tr>
-        <td><?php echo $category['Category']['id']; ?></td>
-        <td><?php echo $category['Category']['user_id']; ?></td>
+        <td><?php echo h($category['Category']['id']); ?></td>
+        <td><?php echo h($category['Category']['user_id']); ?></td>
         <td><?php echo $this->Html->link($category['Category']['name'], array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?></td>
-        <td><?php echo $category['Category']['created']; ?></td>
-        <td><?php echo $category['Category']['modified']; ?></td>
+        <td><?php echo h($category['Category']['created']); ?></td>
+        <td><?php echo h($category['Category']['modified']); ?></td>
         <td><?php echo $this->Html->link('編集', array('action' => 'edit', $category['Category']['id'])); ?></td>
     </tr>
     <?php endforeach; ?>

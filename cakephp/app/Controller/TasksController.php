@@ -171,9 +171,4 @@ class TasksController extends AppController {
     	$this->set('tasks',$this->Task->find('all'));
     }
 
-
-    public function contact() {
-        
-    }
-
 }

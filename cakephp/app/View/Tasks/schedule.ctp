@@ -57,9 +57,9 @@
  
 <table>
 	<tr>
-		<td><a href="?date=<?php echo date('Y-m', strtotime($y .'-' . $m . ' -1 month')); ?>">&lt; 前の月</a></td>
-		<td><?php echo $y ?>年<?php echo $m ?>月</td>
-		<td><a href="?date=<?php echo date('Y-m', strtotime($y .'-' . $m . ' +1 month')); ?>">次の月 &gt;</a></td>
+		<td><a href="?date=<?php echo h(date('Y-m', strtotime($y .'-' . $m . ' -1 month'))); ?>">&lt; 前の月</a></td>
+		<td><?php echo h($y) ?>年<?php echo h($m) ?>月</td>
+		<td><a href="?date=<?php echo h(date('Y-m', strtotime($y .'-' . $m . ' +1 month'))); ?>">次の月 &gt;</a></td>
 	</tr>
 </table>
  
@@ -93,19 +93,19 @@
 		// 日付出力（土日祝には色付け）
 		if(date("w", mktime(0, 0, 0, $m, $d, $y)) == 0)
 		{
-			echo "<td style='color:red;'>$d<br>";
+			echo "<td style='color:red;'>".h($d)."<br>";
 		}
 		elseif(date("w", mktime(0, 0, 0, $m, $d, $y)) == 6)
 		{
-			echo "<td style='color:blue;'>$d<br>";
+			echo "<td style='color:blue;'>".h($d)."<br>";
 		}
 		elseif(!empty($national_holiday[date("Ymd", mktime(0, 0, 0, $m, $d, $y))]))  
 		{
-			echo "<td style='color:red;'>$d<br>";
+			echo "<td style='color:red;'>".h($d)."<br>";
 		}
 		else
 		{
-			echo "<td>$d<br>";
+			echo "<td>".h($d)."<br>";
 		}
 		
 

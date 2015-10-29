@@ -1,7 +1,7 @@
 <div class="container">
 <h1>To Do 管理アプリ</h1>
 
-<p>ログインユーザー名:<?php echo $this->name; ?></p>
+<p>ログインユーザー名:<?php echo h($this->name); ?></p>
 
 <div class="row">
 
@@ -37,13 +37,13 @@
 
 	    <?php foreach ($tasks as $task): ?>
 	    <tr>
-	    	<td><?php echo $task['Task']['id']; ?></td>
+	    	<td><?php echo h($task['Task']['id']); ?></td>
 	    	<td><?php echo $this->Html->link($task['Task']['title'], array('controller' => 'tasks', 'action' => 'view', $task['Task']['id'])); ?></td>
-	        <td><?php echo $task['User']['username']; ?></td>
-	        <td><?php echo $task['Group']['name']; ?></td>
+	        <td><?php echo h($task['User']['username']); ?></td>
+	        <td><?php echo h($task['Group']['name']); ?></td>
 	        <td><?php echo $this->Html->link($task['Category']['name'], array('action' => 'category_index',$task['Category']['id'])); ?></td>
-	        <td><?php echo $task['Task']['deadline_date']; ?></td>
-	        <td><?php echo $task['Task']['deadline_time']; ?></td>
+	        <td><?php echo h($task['Task']['deadline_date']); ?></td>
+	        <td><?php echo h($task['Task']['deadline_time']); ?></td>
 	        <td>
 	        	<?php echo $this->Html->link('編集', array('action' => 'edit', $task['Task']['id'])); ?>
 	        	<?php echo $this->Form->postLink('削除', array('action' => 'delete', $task['Task']['id']), array('confirm' => 'Are you sure?')); ?>

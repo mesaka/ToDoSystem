@@ -5,7 +5,7 @@
 <?php echo $this->Session->flash('auth'); ?>
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-    <legend><?php echo __('ログイン画面'); ?></legend>
+    <legend><?php echo h(__('ログイン画面')); ?></legend>
 	    <?php echo $this->Form->input('username', array('maxlength' => '255', 'type' => 'text'));
 	    	echo $this->Form->input('password', array('maxlength' => '255', 'type' => 'password'));
 		?>

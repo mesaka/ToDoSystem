@@ -15,10 +15,10 @@
 
     <?php foreach ($organizations as $organization): ?>
     <tr>
-        <td><?php echo $organization['Organization']['id']; ?></td>
+        <td><?php echo h($organization['Organization']['id']); ?></td>
         <td><?php echo $this->Html->link($organization['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?></td>
-        <td><?php echo $organization['Organization']['created']; ?></td>
-        <td><?php echo $organization['Organization']['modified']; ?></td>
+        <td><?php echo h($organization['Organization']['created']); ?></td>
+        <td><?php echo h($organization['Organization']['modified']); ?></td>
         <td>
             <?php echo $this->Html->link('編集',array('action'=>'edit',$organization['Organization']['id']));?>
             <?php echo $this->Form->postLink('削除', array('action' => 'delete', $organization['Organization']['id']), array('confirm' => 'Are you sure?')); ?>

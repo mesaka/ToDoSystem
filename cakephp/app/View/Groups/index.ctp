@@ -16,11 +16,11 @@
 
     <?php foreach ($groups as $group): ?>
     <tr>
-        <td><?php echo $group['Group']['id']; ?></td>
+        <td><?php echo h($group['Group']['id']); ?></td>
         <td><?php echo $this->Html->link($group['Group']['name'], array('action' => 'view', $group['Group']['id'])); ?></td>
-        <td><?php echo $group['Organization']['name']; ?></td>
-        <td><?php echo $group['Group']['created']; ?></td>
-        <td><?php echo $group['Group']['modified']; ?></td>
+        <td><?php echo h($group['Organization']['name']); ?></td>
+        <td><?php echo h($group['Group']['created']); ?></td>
+        <td><?php echo h($group['Group']['modified']); ?></td>
         <td>
             <?php echo $this->Html->link('編集',array('action'=>'edit',$group['Group']['id']));?>
             <?php echo $this->Form->postLink('削除', array('action' => 'delete', $group['Group']['id']), array('confirm' => 'Are you sure?')); ?>

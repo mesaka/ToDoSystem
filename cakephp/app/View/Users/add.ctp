@@ -1,7 +1,7 @@
 <?php echo $this->Html->link('ログイン画面へ',array('action'=>'login')); ?>
 
 <div class="users form">
-<h2><?php echo __('会員登録 Sign up'); ?></h2>
+<h2><?php echo h(__('会員登録 Sign up')); ?></h2>
 <p>下記のフォームに必要事項をご記入の上、[登録ボタン]を押してください</p>
 
 	<div class="user_add">
