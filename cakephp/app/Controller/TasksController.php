@@ -3,12 +3,11 @@
 class TasksController extends AppController {
 
 	public $helpers = array('Html', 'Form', 'Session', 'Markdown.Markdown',);
-	public $components = array('Session');
+	public $components = array('Session', 'Paginator');
 	public $uses = array('Task', 'Category', 'User', 'Organization', 'Group', 'GroupsUser');
-// 
 
-    public function beforeFilter() {
-        
+
+    public function beforeFilter() {        
         // ログイン中のユーザー名
         $user = $this->Auth->user();
         if (is_null($user)) {
@@ -16,7 +15,6 @@ class TasksController extends AppController {
         } else {
            $this->name = $_SESSION['Auth']['User']['username'];
         }
-
 
         $this->checkOrganization = $this->Auth->user('organization_id');
         $this->checkGroup = $this->Auth->user('group_id');
@@ -27,21 +25,18 @@ class TasksController extends AppController {
 
 
 	public function index() {
-
         $login_id = $this->Auth->user('id');                                                                               // ログインユーザーのID
         $groups_user = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $login_id)));    // GroupsUserテーブルのuser_idがログイン中のユーザーと同じデータを取得する
         $result = Hash::extract($groups_user, '{n}.GroupsUser.group_id'); 
 
 
-		$this->set('tasks',$this->Task->find('all', array('conditions' => array('and' => 
+		$tasks = $this->Task->find('all', array('conditions' => array('and' => 
                                                                             array(
-                                                                                // 'Task.group_id' => $result,
                                                                                 'Task.public_private' => 0,
-                                                                            )))));
-
-		$this->set('categories', $this->Category->find('all'));
-
-
+                                                                            ))));
+        $this->set('tasks', $this->Paginator->paginate());
+        $categories = $this->Category->find('all');
+        $this->set('categories', $this->Paginator->paginate());
 	}
 
 
@@ -49,7 +44,6 @@ class TasksController extends AppController {
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
-
         $task = $this->Task->findById($id);
         if (!$task) {
             throw new NotFoundException(__('Invalid post'));
@@ -80,11 +74,9 @@ class TasksController extends AppController {
 
 
 	public function edit($id = null) {
-
 		if (!$id) {
 	        throw new NotFoundException(__('エラーが起きました'));
 	    }
-
 	    $task = $this->Task->findById($id);
         $this->set('task', $task);
 	    if (!$task) {
@@ -119,7 +111,6 @@ class TasksController extends AppController {
 
 
 	public function delete($id) {
-
 	    if ($this->request->is('get')) {
         	throw new MethodNotAllowedException();
 	    }
@@ -127,9 +118,7 @@ class TasksController extends AppController {
         if ($this->checkAuthority < 2) {
             throw new NotFoundException(__('権限が与えられていません'));
         }
-
 	    if ($this->Task->delete($id)) {
-
 	        $this->Session->setFlash(
 	            __('The post with id: %s has been deleted.', h($id))
 	        );
@@ -161,9 +150,7 @@ class TasksController extends AppController {
 
     //タイトル前方一致検索
     public function search_index() {
-
         $user_organize = $this->checkOrganization;
-
     	if ($this->request->is('post')) {
     		$title = $this->request->data['Task']['タイトル検索'];
     		$this->set('tasks', $this->Task->find('all', array('conditions' => array('and' =>
@@ -177,81 +164,16 @@ class TasksController extends AppController {
     	}
 
     	$this->set('categories', $this->Category->find('all'));
-
     }
-
-
-
-    // ID昇順
-    public function id_asc($id = null) {
-
-    	$this->set('tasks', $this->Task->find('all', array('order' => 'Task.id')));
-
-    	$this->set('categories', $this->Category->find('all'));
-
-    }
-    // ID降順
-    public function id_desc($id = null) {
-
-    	$this->set('tasks', $this->Task->find('all', array('order' => 'Task.id DESC')));
-
-    	$this->set('categories', $this->Category->find('all'));
-
-    }
-
-
-
-
-    // カテゴリー昇順
-    public function category_asc($id = null) {
-
-    	$this->set('tasks',$this->Task->find('all', array('order' => 'Category.name')));
-
-    	$this->set('categories', $this->Category->find('all'));
-
-    }
-    // カテゴリー降順
-    public function category_desc($id = null) {
-
-    	$this->set('tasks',$this->Task->find('all', array('order' => 'Category.name DESC')));
-
-    	$this->set('categories', $this->Category->find('all'));
-
-    }
-
-
-
-
-    // 締め切り昇順
-    public function deadline_asc($id = null) {
-
-    	$this->set('tasks', $this->Task->find('all', array('order' => array("deadline_date", 'deadline_time'))));
-
-    	$this->set('categories', $this->Category->find('all'));
-
-    }
-    // 締め切り降順
-    public function deadline_desc($id = null) {
-
-    	$this->set('tasks', $this->Task->find('all', array('order' => array('deadline_date DESC', 'deadline_time DESC'))));
-
-    	$this->set('categories', $this->Category->find('all'));
-
-    }
-
 
 
     public function schedule() {
-
     	$this->set('tasks',$this->Task->find('all'));
-
     }
 
 
     public function contact() {
-
-
-
+        
     }
 
 }

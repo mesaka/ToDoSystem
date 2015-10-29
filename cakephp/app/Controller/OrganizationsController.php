@@ -20,9 +20,7 @@ class OrganizationsController extends AppController {
 
 
 	public function index() {
-
 		$this->set('organizations',$this->Organization->find('all'));
-
 	}
 
 
@@ -30,11 +28,11 @@ class OrganizationsController extends AppController {
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
-
         $organization = $this->Organization->findById($id);
         if (!$organization) {
             throw new NotFoundException(__('Invalid post'));
         }
+
         $this->set('organization', $organization);
     }
 
@@ -52,11 +50,9 @@ class OrganizationsController extends AppController {
 	}
 
 	public function edit($id = null) {
-
 		if (!$id) {
 	        throw new NotFoundException(__('エラーが起きました'));
 	    }
-
 	    $organization = $this->Organization->findById($id);
 	    if (!$organization) {
 	        throw new NotFoundException(__('エラーが起きました'));
@@ -80,13 +76,11 @@ class OrganizationsController extends AppController {
 
 
 	public function delete($id) {
-
 	    if ($this->request->is('get')) {
         	throw new MethodNotAllowedException();
 	    }
 
 	    if ($this->Organization->delete($id)) {
-
 	        $this->Session->setFlash(
 	            __('The post with id: %s has been deleted.', h($id))
 	        );

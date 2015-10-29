@@ -6,18 +6,24 @@ class SendMailShell extends AppShell {
 		
 
 	public function alert() {
-		$tasks = $this->Task->find('all', array('fields' => array('id', 'deadline_date', 'deadline_time', 'alert_switch', 'alert_time'), 'conditions' => array('alert_switch' => 1)));
+		$tasks = $this->Task->find('all', array('conditions' => array('alert_switch' => 1)));
 		
 		$now = date("Y-m-d G:i:s");
 		
 		foreach ($tasks as $task) {
 			$id = $task['Task']['id'];
+			$user_id = $task['Task']['user_id'];
 			$alert_switch = $task['Task']['alert_switch'];
 			$alert_time = $task['Task']['alert_time'];
 			$date = $task['Task']['deadline_date'];
 			$time = $task['Task']['deadline_time'];
-
 			$target_day = $date . ' ' . $time;
+
+			$users = $this->User->find('all', array('fields' => array('id', 'email'), 'conditions' => array('User.id' => $user_id)));
+            		$user_email = Hash::extract($users, '{n}.User.email');
+			$subject = 'ToDoSystemからのお知らせ';
+			$message_first_half = 'もうすぐ次のタスクの予定日です。'
+            		$message_second_half = '<br>タイトル: ' . $title . '<br>内容: '  . $contents;
 
 			switch ($alert_time) {
 				# 1週間前
@@ -28,10 +34,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '7') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('1週間前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -47,10 +53,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '3') {
                         			$email = new CakeEmail('mail');
 						$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                                                $email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                                                $email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('3日前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         			$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         			$fields = array('alert_switch');
                         			$this->Task->save($data, false, $fields);
@@ -66,10 +72,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '1') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('1日前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -85,10 +91,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '12') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('12時間前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -104,10 +110,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '6') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('6時間前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -123,10 +129,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '3') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('3時間前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -142,10 +148,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '1') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('1時間前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -161,10 +167,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '30') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('30分前です')) {
+                        			if ($email->send($message_first_half.'<br>期限: 1週間後'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);
@@ -180,10 +186,10 @@ class SendMailShell extends AppShell {
 					if ($tmp_result == '0') {
                         			$email = new CakeEmail('mail');
                         			$email->from( array('yagishita@nunatoi.jp' => 'ぬなとゐシステム合同会社より'));
-                        			$email->to('kidsdream226@gmail.com');
-                        			$email->subject('メール自動送信テスト');
+                        			$email->to($user_email);
+                        			$email->subject($subject);
 
-                        			if ($email->send('締め切り時間です')) {
+                        			if ($email->send('次のタスクの予定時間です。'.$message_second_half)) {
                         				$data = array('Task' => array('id' => $id, 'alert_switch' => 0));
                         				$fields = array('alert_switch');
                         				$this->Task->save($data, false, $fields);

@@ -6,8 +6,8 @@ class UsersController extends AppController {
     public $uses = array('Task', 'Category', 'User', 'Organization', 'Group', 'GroupsUser');
     public $scaffold;
 
-    public function beforeFilter() {
 
+    public function beforeFilter() {
         // ログイン中のユーザー名
         $user = $this->Auth->user();
         if (is_null($user)) {
@@ -73,7 +73,7 @@ class UsersController extends AppController {
         $this->User->id = $user_id;
         if ($this->User->exists() && $in_hash == $this->User->getActivationHash()) {
         // 本登録に有効なURL
-            // statusフィールドを0に更新
+            // statusフィールドを更新
             $this->User->saveField('authority', 1);
             $this->Session->setFlash('本登録完了');
         }else{
@@ -85,11 +85,9 @@ class UsersController extends AppController {
 
 
     public function edit($id = null) {
-
         if (!$id) {
             throw new NotFoundException(__('エラーが起きました'));
         }
-
         $user = $this->User->findById($id);
         if (!$user) {
             throw new NotFoundException(__('エラーが起きました'));
@@ -120,13 +118,9 @@ class UsersController extends AppController {
 
 
     public function login() {
-
     	if ($this->request->is('post')) {
-             
             if ($this->Auth->login()) {
-
                 if ($this->Auth->user('id')) {
-                    
                     $userId = $this->Auth->user('id');
                     // 本登録が完了しているか確認する
                     $userAuthority = $this->Auth->user('authority');
@@ -156,19 +150,15 @@ class UsersController extends AppController {
 
     // マイページ
     public function mypage() {
-
         $login_id = $this->checkId = $this->Auth->user('id');
 
         $this->set('tasks',$this->Task->find('all', array('conditions' => array('Task.user_id' => $login_id))));
-
         $this->set('categories', $this->Category->find('all'));
         
     }
 
 
     public function my_organization() {
-
-
         // ログインユーザーと同じ組織に属しているTaskだけを取得する
         $user_organize = $this->checkOrganization;
         $this->set('tasks',$this->Task->find('all', array('conditions' => array('and' => 
@@ -178,24 +168,19 @@ class UsersController extends AppController {
                                                                             )))));
 
         $this->set('categories', $this->Category->find('all'));
-
     }
 
 
 
     // 管理者ページ
     public function admin() {
-
         if ($this->checkAuthority < 3) {
             throw new NotFoundException(__('権限が与えられていません'));
         }
 
         $this->set('users',$this->User->find('all'));
-
         $this->set('organizations', $this->Organization->find('list'));
-
         $this->set('groups', $this->Group->find('list'));
-
     }
 
     // システム管理者ページ
@@ -206,42 +191,30 @@ class UsersController extends AppController {
         }
 
         $this->set('users',$this->User->find('all'));
-
         $this->set('organizations', $this->Organization->find('list'));
-
         $this->set('groups', $this->Group->find('list'));
-
     }
 
 
     public function tasks_admin() {
-
         $this->set('tasks',$this->Task->find('all'));
-
         $this->set('categories', $this->Category->find('all'));
-
     }
 
 
 
     public function users_admin() {
-
         $this->set('users',$this->User->find('all'));
-
         $this->set('organizations', $this->Organization->find('list'));
-
         $this->set('groups', $this->Group->find('list'));
-
     }
 
 
 
     public function edit_admin($id = null) {
-
         if (!$id) {
             throw new NotFoundException(__('エラーが起きました'));
         }
-
         $user = $this->User->findById($id);
         if (!$user) {
             throw new NotFoundException(__('エラーが起きました'));
@@ -261,7 +234,6 @@ class UsersController extends AppController {
         }
 
         $this->set('organizations', $this->Organization->find('list'));
-
         $this->set('groups', $this->Group->find('list'));
     }
 

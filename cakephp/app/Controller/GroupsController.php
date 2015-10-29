@@ -6,35 +6,28 @@ class GroupsController extends AppController {
     public $uses = array('Group', 'Organization', 'User', 'GroupsUser');
     public $scaffold;
 
-	public function beforeFilter() {
 
+	public function beforeFilter() {
         $this->checkAuthority = $this->Auth->user('authority');
         $this->checkOrganization = $this->Auth->user('organization_id');
-
     }
 
 
     public function index() {
-
         if ($this->checkAuthority < 2) {
             throw new NotFoundException(__('権限が与えられていません'));
         }
 
-    	$this->set('groups', $this->Group->find('all'));
-
+    	$this->set('groups', $this->Group->find('all'))
     }
 
 
     public function view($id = null) {
-
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
-
-
         $group = $this->Group->findById($id);
         $this->set('group', $group);
-
         if (!$group) {
             throw new NotFoundException(__('Invalid post'));
         }
@@ -42,7 +35,6 @@ class GroupsController extends AppController {
         if ($this->checkOrganization !== $group['Organization']['id'] && $this->checkAuthority != 9) {
             throw new NotFoundException(__('権限が与えられていません'));
         }
-
 
         // グループと同じ組織に属しているユーザーデータを取ってくる
         $organization = $group['Organization']['id'];
@@ -52,7 +44,6 @@ class GroupsController extends AppController {
 
 
     public function add() {
-
         if ($this->checkAuthority < 2) {
             throw new NotFoundException(__('権限が与えられていません'));
         }
@@ -71,13 +62,11 @@ class GroupsController extends AppController {
         $userId = $this->Auth->user('organization_id');
         //ログインしているユーザーと同じ組織に属しているメンバーを一覧で表示させる
         $this->set('users', $this->User->find('all', array('conditions' => array('User.organization_id' => $userId))));
-
         $this->set('organizations', $this->Organization->find('list'));
     }
 
 
     public function member_add($id = null) {
-
         if ($this->request->is('post')) {
             $this->GroupsUser->create();
 
@@ -88,7 +77,6 @@ class GroupsController extends AppController {
                 $this->Session->setFlash(__('入力内容をもう一度ご確認ください'));
             }
         }
-
         $group = $this->Group->findById($id);
         if (!$group) {
             throw new NotFoundException(__('Invalid post'));
@@ -108,11 +96,9 @@ class GroupsController extends AppController {
 
 
     public function edit($id = null) {
-
         if (!$id) {
             throw new NotFoundException(__('エラーが起きました'));
         }
-
         $group = $this->Group->findById($id);
         if (!$group) {
             throw new NotFoundException(__('エラーが起きました'));
@@ -137,13 +123,10 @@ class GroupsController extends AppController {
 
 
     public function delete($id) {
-
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
-
         if ($this->Group->delete($id)) {
-
             $this->Session->setFlash(
                 __('The post with id: %s has been deleted.', h($id))
             );
