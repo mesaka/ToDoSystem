@@ -1,0 +1,244 @@
+body {
+	padding-top: 51px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+
+#header {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+.nav_content {
+	margin-top: 50px;
+}
+
+/*setFlashのエラーメッセージ*/
+.message {
+    background-color: lightYellow;
+    border: 1px solid #E6DB55;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/*バリデーションのエラーメッセージ*/
+.error-message {
+	color: red;
+}
+
+
+/****************************
+		users/login
+*****************************/
+.go-newuser {
+	margin-top: 10px;
+}
+
+/****************************
+		groups/index
+*****************************/
+
+
+.task-lists li {
+	float: left;
+    width: 100%;
+    padding: 10% 6%;
+}
+
+.task-lists .task-title a {
+	color: #fff;
+	font-size: 1.2em;
+	display: block;
+    height: 150px;
+    line-height: 148px;
+    text-align: center;
+    /*background: #0099ff;*/
+    -webkit-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	position: relative;
+}
+
+.task-lists .task-title a:hover {
+	opacity: 0.7;
+	box-shadow: 2px 5px 5px rgba(0,0,0,0.4);
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.task-delete {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+}
+
+.task-delete a {
+	color: #a9a9a9;
+}
+
+.add_task li {
+    width: 100%;
+    padding: 10% 6%;
+}
+
+.add_task a {
+	margin: 10% 6% 0px;
+	background: #cccccc;
+	color: #666666;
+	font-size: 1.2em;
+	display: block;
+    height: 150px;
+    line-height: 148px;
+    text-align: center;
+    -webkit-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+
+.add_task a:hover {
+	opacity: 0.7;
+	box-shadow: 2px 5px 5px rgba(0,0,0,0.4);
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+/****************************
+		groups/edit
+*****************************/
+.group-set-wrap {
+	margin-top: 20px;
+}
+
+.group-members {
+	font-size: 16px;
+}
+
+.group-members p {
+	margin-bottom: 5px;
+}
+
+
+/****************************
+		groups/member_set
+*****************************/
+.set-menu-wrap {
+	margin-top: 20px;
+}
+
+.set-menu p {
+	font-weight: bold;
+}
+
+.set-menu li {
+	margin-bottom: 7px;
+}
+
+.set-menu table th,
+.set-menu table td {
+	border: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 10px;
+}
+
+/****************************
+		tasks
+*****************************/
+#menu-toggle {
+	margin-top: 20px;
+}
+
+.task-schedule {
+	margin: 60px 0px;
+}
+
+.task-schedule ul {
+	list-style-type: disc;
+}
+
+.task-schedule table {
+    width: 100%;
+}
+.task-schedule table th {
+    background: #EEEEEE;
+}
+.task-schedule table th,
+.task-schedule table td {
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 50px;
+}
+
+
+/****************************
+		tasks/view
+*****************************/
+.square {
+   width: 75%;
+   height: 100%;
+   margin-left: 12%;
+   box-shadow: 6px 8px 5px rgba(0,0,0,0.4);
+}
+
+.square li {
+	color: #fff;
+	font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+	/*text-shadow:
+		-1px -1px #1f1f1f,
+		1px -1px #1f1f1f,
+		-1px 1px #1f1f1f,
+		1px 1px #1f1f1f;*/
+}
+
+.square a {
+	color: #000;
+	font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;;
+}
+
+.task-titile {
+	font-size: 2em;
+	padding: 6% 6% 3% 6%;
+}
+
+.task-detail {
+	font-size: 1.3em;
+	padding-left: 10%;
+}
+
+.task-detail p {
+	padding-left: 30px;
+}
+
+.task-set {
+	font-weight: 500;
+	padding-top: 10px;
+	padding-left: 75%;
+	padding-bottom: 15px;
+}
+
+.task-set .delete {
+	font-weight: 500;
+	margin-left: 8%;
+}
+
+.task-share {
+	margin-left: 12%;
+	margin-top: 5%;
+}

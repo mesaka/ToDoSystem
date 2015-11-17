@@ -1,0 +1,21 @@
+ul {
+	list-style-type: none;
+}
+
+.category-menu {
+	/*background-color:#f5f5f5;*/
+	margin-top: 20px;
+}
+
+table {
+    width: 100%;
+}
+table th {
+    background: #EEEEEE;
+}
+table th,
+table td {
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 5px;
+}

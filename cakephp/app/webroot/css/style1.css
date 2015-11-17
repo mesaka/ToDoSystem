@@ -1,0 +1,310 @@
+/*
+Kit Name: Modern Touch
+Kit URI: http://pixelkit.com/kits/flat-ui-kit
+Description: 100+ elements
+Version: 1.0
+Author: PixelKit
+Author URI: http://pixelkit.com
+
+CSS STRUCTURE:
+
+1. GENERAL TYPOGRAPHY
+	- Fonts
+	- Global Reset
+	- General Styles
+	- Clear Floats
+	- Typography
+	- Buttons
+	- Custom checkboxes, radios
+
+2. PAGE ITEMS, WIDGETS
+	- Table Pricing
+	        - price style 1
+	- Sidebar widgets
+			- Widget Calendar
+	- Forms
+	- Pagination
+	        - Pagination Style 1
+	        - Pagination Style 2
+	        - Pagination Style 3
+	        - Pagination Style 3 Small
+	        - Pagination Style 3 Mini
+	- Dividers
+3. INDEX PAGE
+	- Main Menu
+	- Main Menu with Icons
+	- Dropdown Menu
+	- Grid Menu
+	- Vertical Menu
+	- Progress Bars
+	- Scroll Bars
+	- Avatar Placeholder
+	- Widget Social Buttons
+	- Widget Weather
+	- Image Slider
+	- Image Slider (CarouFredSel)
+
+/*===================================================*/
+/* 1. GENERAL TYPOGRAPHY */
+/*===================================================*/
+
+/*-----------------------------------*/
+/* Fonts */
+/*-----------------------------------*/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700,800);
+
+/*-----------------------------------*/
+/* Global Reset */
+/*-----------------------------------*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block}
+body {
+	line-height: 1; }
+ol, ul {
+	list-style: none; }
+blockquote, q {
+	quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none; }
+table {
+	border-collapse: collapse;
+	border-spacing: 0}
+
+html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; }
+
+/*-----------------------------------*/
+/* General Styles */
+/*-----------------------------------*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size:13px;
+    font-weight: 300;
+    color:#666;
+    -webkit-font-smoothing: subpixel-antialiased;
+	position:relative;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009d9e', endColorstr='#009d9e',GradientType=0 );
+    background-image: url("/Users/YUTAKA/Desktop/nunatoi/work/pub002/modern-touch/modern-touch-css/images/kabekami.png")
+  }
+.body_wrap{
+    b
+}
+::-moz-selection {
+	background: #3bbec0;
+	color: #fff;
+	text-shadow: none;
+}
+::selection {
+	background: #3bbec0;
+	color: #fff;
+	text-shadow: none;
+}
+
+a{color: #3f4b56;}
+
+a:hover,
+a:focus {
+	color: #3bbec0;
+	text-decoration: none;
+}
+a:active{background-color: transparent;}
+
+input, textarea, input[type="submit"]:focus, div {
+    outline: 0 none;
+    font-family: 'Open Sans', sans-serif;
+}
+button, input, select, textarea {vertical-align: top; margin: 0;}
+
+.alpha{margin-left:0 !important;}
+.omega{margin-right:0 !important;}
+
+/*-----------------------------------*/
+/* Clear Floats */
+/*-----------------------------------*/
+
+html body * span.clear,
+html body * div.clear,
+html body * li.clear,
+html body * dd.clear {
+	background: none;
+	border: 0;
+	clear: both;
+	display: block;
+	float: none;
+	font-size: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+.clearfix:after {
+	clear: both;
+}
+
+/*-----------------------------------*/
+/* Typography */
+/*-----------------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-style: italic;
+	color: #3f4b56;
+	line-height:1.2em;
+	margin-bottom:.8em;
+}
+h1.red, h2.red, h3.red, h4.red, h5.red, h6.red{color: #e87352;}
+
+h1{font-size:29px}
+h2{font-size:25px}
+h3{font-size:23px}
+h4{font-size:19px}
+h5{font-size:17px}
+h6{font-size:15px}
+
+em{font-style: italic;}
+strong{font-weight: 700;}
+small{font-size: 85%;}
+
+i{
+	position: relative;
+	top: 0;
+	left: 0;
+	/*display: inline-block;*/
+	overflow: hidden;
+	text-decoration: none;
+	font-style: normal;
+	background-repeat: no-repeat;
+	margin-right: 10px;
+	color:#ffffff;
+	font-family: 'Archivo Black', sans-serif;
+	font-weight: 10px;
+	font-size: 20px;
+}
+p{
+    line-height: 19px;
+	margin-bottom: 16px;
+}
+.margin-0{margin-bottom:0 !important;}
+.margin-10{margin-bottom:10px !important;}
+.margin-20{margin-bottom:20px !important;}
+.margin-30{margin-bottom:30px !important;}
+.margin-40{margin-bottom:40px !important;}
+.margin-50{margin-bottom:50px !important;}
+
+
+
+/*-----------------------------------*/
+/* Widget Social Buttons */
+/*-----------------------------------*/
+
+.widget-social{margin-bottom: 25px;}
+
+.widget-social li{
+    float: left;
+    width: 30%;
+    padding: 3%;
+}
+/*.widget-social li:nth-child(6n) {padding-right: 0;}*/
+
+.widget-social a{
+    display: block;
+    height: 150px;
+    line-height: 148px;
+    text-align: center;
+    background: #3bbec0;
+    -webkit-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	/*box-shadow: 2px 5px 5px rgba(0,0,0,0.4);*/
+}
+.widget-social .social-facebook a{background: #0099ff;}
+.widget-social .social-facebook a:hover{
+	opacity: 0.7;
+	box-shadow: 2px 5px 5px rgba(0,0,0,0.4);
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.widget-social i {
+    width: 110px;
+    height: 100px;
+    margin: 0;
+    overflow: hidden;
+    text-indent: 200px;
+    vertical-align: middle;
+    /*background: url(images/icons/social-icons2.png) 0 0 no-repeat;*/
+}
+.widget-social .social-facebook i{background-position: 0 0;}
+.widget-social .social-twitter i{background-position: 0 -46px;}
+.widget-social .social-dribble i{background-position: 0 -92px;}
+.widget-social .social-deviantart i{background-position: 0 -138px;}
+.widget-social .social-google i{background-position: 0 -184px;}
+.widget-social .social-vimeo i{background-position: 0 -230px;}
+
+@media (max-width:767px) {
+	.widget-social li{width: 33.33333333333333%;}
+	.widget-social li:nth-child(3n) {padding-right: 0;}
+}
+
+/*-------------------------------------------*/
+/* Layout on Index Page */
+/*-------------------------------------------*/
+
+/* Controls */
+
+.controls .inner{padding: 18px 50px 39px;}
+
+@media (max-width: 991px){
+    .controls .inner{padding: 0px 20px 25px;}
+}
+.checkBoxes{float: right; width: 45%; padding-top: 8px;}
+.checkBoxes .custom-checkbox label, .checkBoxes .custom-radio label {padding-left: 27px;}
+
+
+
+/*.adjust {
+	margin: 0px -250px 0px -150px;
+}*/
+
+.add_task i {
+	color: #999999;
+}
+
+.add_task a {
+	background: #cccccc;
+}
+
+.add_task a:hover{
+	opacity: 0.7;
+	box-shadow: 2px 5px 5px rgba(0,0,0,0.4);
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
